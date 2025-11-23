@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bluehill Bakery · Portfolio Sample</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- 고급 폰트: Inter + Noto Sans KR -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans KR', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f5f5f7;
+      color: #111827;
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1200px;
+      margin: 32px auto 56px;
+      padding: 0 24px;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .logo-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+    }
+    .logo-sub {
+      font-size: 11px;
+      color: #6b7280;
+    }
+    .nav {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+      color: #4b5563;
+      align-items: center;
+    }
+    .nav a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1.5px;
+      background: #111827;
+      transition: width 0.15s ease-out;
+    }
+    .nav a:hover::after {
+      width: 100%;
+    }
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid #111827;
+      font-size: 12px;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 36px;
+    }
+    @media (max-width: 880px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-left {
+      max-width: 540px;
+    }
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 10px;
+    }
+    .hero-title {
+      font-size: 34px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: #4b5563;
+      margin-bottom: 8px;
+    }
+    .hero-note {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 20px;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+    .stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .btn-primary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: #111827;
+      color: #f9fafb;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-outline {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: transparent;
+      color: #111827;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .hero-right {
+      border-radius: 26px;
+      overflow: hidden;
+      background: #e5e7eb;
+      box-shadow: 0 22px 50px rgba(15,23,42,0.25);
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* NOTE */
+    .note-bar {
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 28px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      display: inline-block;
+    }
+
+    /* SECTION COMMON */
+    section {
+      margin-bottom: 34px;
+    }
+    section h2 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    section p {
+      font-size: 13px;
+      color: #4b5563;
+    }
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 4px;
+    }
+
+    /* MENU CARDS */
+    .menu-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    @media (min-width: 900px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .menu-card {
+      background: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.08);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .menu-img-wrap {
+      height: 150px;
+      overflow: hidden;
+    }
+    .menu-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .menu-body {
+      padding: 12px 14px 14px;
+    }
+    .menu-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .menu-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .menu-tag {
+      font-size: 10px;
+      font-family: 'Inter', sans-serif;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #f3f4ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      white-space: nowrap;
+    }
+    .menu-desc {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+    .menu-meta {
+      font-size: 11px;
+      color: #9ca3af;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .menu-price {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    @media (min-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #e5e7eb;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease-out;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 11px;
+      color: #9ca3af;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <header>
+      <div class="logo-wrap">
+        <div class="logo">BLUEHILL BAKERY</div>
+        <div class="logo-sub">Blue tone artisan bakery · Portfolio sample site (가상 브랜드)</div>
+      </div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#info">Info</a>
+        <div class="nav-cta">포트폴리오 샘플</div>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="about">
+      <div class="hero-left">
+        <div class="eyebrow">WHO WE ARE</div>
+        <h1 class="hero-title">블루힐 베이커리 홈페이지에 오신 여러분을 환영합니다.</h1>
+        <p class="hero-sub">
+          매일 아침 직접 반죽해 천천히 구워내는 블루톤 감성 베이커리입니다.
+          따뜻한 우드톤 인테리어와 정직한 레시피로, 하루를 부드럽게 시작할 수 있는 공간을 지향합니다.
+        </p>
+        <p class="hero-note">
+          이 페이지는 실제 매장이 아닌, 웹사이트 제작 포트폴리오용으로 기획된 가상의 브랜드 예시입니다.
+          텍스트와 이미지, 색감만 교체하면 다른 카페·베이커리 사이트로도 그대로 활용 가능합니다.
+        </p>
+
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">30+</div>
+            <div class="stat-label">Daily Bakes</div>
+          </div>
+          <div>
+            <div class="stat-num">10</div>
+            <div class="stat-label">Signature Menu</div>
+          </div>
+        </div>
+
+        <div class="hero-buttons">
+          <button class="btn-primary">시그니처 메뉴 보기 (샘플)</button>
+          <button class="btn-outline">실제 의뢰 시 구성 예시</button>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <!-- hero.jpg 사용 -->
+        <img src="hero.jpg" alt="Bluehill Bakery sample interior" />
+      </div>
+    </section>
+
+    <div class="note-bar">
+      ※ 실제 작업에서는 클라이언트가 제공한 사진 또는 AI 생성 이미지를 교체하여 사용합니다.
+    </div>
+
+    <!-- MENU SECTION -->
+    <section id="menu">
+      <div class="section-label">MENU</div>
+      <h2>Signature Menu</h2>
+      <p>대표 메뉴 3가지를 통해 매장의 컨셉과 분위기를 한 번에 보여주는 영역입니다.</p>
+
+      <div class="menu-grid">
+        <article class="menu-card">
+          <div class="menu-img-wrap">
+            <img src="menu1.jpg" alt="블루베리 크림 브리오슈" />
+          </div>
+          <div class="menu-body">
+            <div class="menu-title-row">
+              <div class="menu-title">블루베리 크림 브리오슈</div>
+              <div class="menu-tag">Signature</div>
+            </div>
+            <div class="menu-desc">
+              신선한 블루베리와 부드러운 크림이 듬뿍 들어간 시그니처 브리오슈.  
+              한 입만으로도 블루힐의 이미지를 각인시키는 대표 메뉴입니다.
+            </div>
+            <div class="menu-meta">
+              <span class="menu-price">₩4,800</span>
+              <span>Daily · 한정 수량</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-img-wrap">
+            <img src="menu2.jpg" alt="소금버터 롤" />
+          </div>
+          <div class="menu-body">
+            <div class="menu-title-row">
+              <div class="menu-title">소금버터 롤</div>
+              <div class="menu-tag">Classic</div>
+            </div>
+            <div class="menu-desc">
+              겉은 바삭, 속은 촉촉한 소금버터 롤.  
+              커피와 가장 조합이 좋은 데일리 메뉴로 구성했습니다.
+            </div>
+            <div class="menu-meta">
+              <span class="menu-price">₩3,200</span>
+              <span>All day · Hot & Ice</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="menu-card">
+          <div class="menu-img-wrap">
+            <img src="menu3.jpg" alt="허니 시나몬 스콘" />
+          </div>
+          <div class="menu-body">
+            <div class="menu-title-row">
+              <div class="menu-title">허니 시나몬 스콘</div>
+              <div class="menu-tag">Tea Time</div>
+            </div>
+            <div class="menu-desc">
+              꿀과 시나몬 향이 은은하게 퍼지는 스콘.  
+              오후 티 타임을 위한 디저트로 브랜딩된 메뉴입니다.
+            </div>
+            <div class="menu-meta">
+              <span class="menu-price">₩4,200</span>
+              <span>Afternoon · 14:00 ~ 18:00</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="section-label">GALLERY</div>
+      <h2>Store & Baking Moments</h2>
+      <p>매장 인테리어, 진열된 빵, 베이킹 순간을 한눈에 보여주는 갤러리 섹션입니다.</p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="g1.jpg" alt=""></div>
+        <div class="gallery-item"><img src="g2.jpg" alt=""></div>
+        <div class="gallery-item"><img src="g3.jpg" alt=""></div>
+        <div class="gallery-item"><img src="g4.jpg" alt=""></div>
+        <div class="gallery-item"><img src="g5.jpg" alt=""></div>
+        <div class="gallery-item"><img src="g6.jpg" alt=""></div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section id="info">
+      <div class="section-label">INFO</div>
+      <h2>Visit & Contact (Sample)</h2>
+      <p>아래 정보는 포트폴리오 구성을 위한 가상의 정보입니다.</p>
+      <p style="font-size:13px; margin-top:6px;">
+        주소 · 서울시 어딘가 123 (포트폴리오용 가상주소)<br>
+        영업시간 · 매일 10:00 ~ 20:00<br>
+        전화번호 · 010-0000-0000<br>
+        Instagram · @bluehill_bakery (Sample)
+      </p>
+    </section>
+
+    <footer>
+      이 페이지는 웹사이트 제작 포트폴리오용으로 제작된 가상의 샘플 사이트입니다.  
+      Bluehill Bakery · Sample Portfolio — Design & Code by Ungyu
+    </footer>
+  </div>
+</body>
+</html>
